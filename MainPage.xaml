@@ -1,10 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TecnologicoApp.MainPage">
-
+<ContentPage
+    x:Class="TecnologicoApp.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TecnologicoApp.ViewModels"
+    Title="Tecnologico App">
+    <ContentPage.BindingContext>
+        loca=
+    </ContentPage.BindingContext>
     <ScrollView>
-       
+        <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+            <Image
+                Margin="0,30,0,0"
+                HeightRequest="100"
+                HorizontalOptions="Center"
+                Source="login.png"
+                WidthRequest="100" />
+            <StackLayout Padding="40" Spacing="30">
+                <Entry
+                    HorizontalOptions="Center"
+                    Placeholder="Email"
+                    PlaceholderColor="Gray"
+                    TextColor="Black"
+                    WidthRequest="333" />
+                <Entry
+                    HorizontalOptions="Center"
+                    Placeholder="Contraseña"
+                    PlaceholderColor="Gray"
+                    TextColor="Black"
+                    WidthRequest="133" />
+                <Button Text="Iniciar" />
+                <StackLayout>
+                    <Label
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        Text="Registrar" />
+                </StackLayout>
+            </StackLayout>
+
+
+
+        </StackLayout>
     </ScrollView>
 
 </ContentPage>
