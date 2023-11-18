@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:TecnologicoApp.ViewModels"
     Title="Tecnologico App">
     <ContentPage.BindingContext>
-        loca=
+        <local:MainPageViewModel />
     </ContentPage.BindingContext>
     <ScrollView>
         <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
@@ -18,29 +18,33 @@
                 WidthRequest="100" />
             <StackLayout Padding="40" Spacing="30">
                 <Entry
+                    x:Name="EmailEntry"
                     HorizontalOptions="Center"
+                    Keyboard="Email"
                     Placeholder="Email"
                     PlaceholderColor="Gray"
+                    Text="{Binding Usuario.Email}"
                     TextColor="Black"
                     WidthRequest="333" />
                 <Entry
+                    x:Name="PasswordEntry"
                     HorizontalOptions="Center"
                     Placeholder="Contraseña"
                     PlaceholderColor="Gray"
+                    Text="{Binding Usuario.Password}"
                     TextColor="Black"
-                    WidthRequest="133" />
-                <Button Text="Iniciar" />
-                <StackLayout>
-                    <Label
-                        FontSize="16"
-                        HorizontalOptions="Center"
-                        Text="Registrar" />
-                </StackLayout>
+                    WidthRequest="333" />
+                <Button
+                    x:Name="LoginBtn"
+                    Command="{Binding LoginCommand}"
+                    Text="Iniciar" />
             </StackLayout>
-
-
-
+            <StackLayout>
+                <Label
+                    FontSize="16"
+                    HorizontalOptions="Center"
+                    Text="Register" />
+            </StackLayout>
         </StackLayout>
     </ScrollView>
-
 </ContentPage>
