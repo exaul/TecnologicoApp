@@ -1,8 +1,8 @@
 ﻿namespace TecnologicoApp.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class LoginPage : ContentPage
     {
-        public MainPage()
+        public LoginPage()
         {
             try
             {
@@ -16,8 +16,6 @@
             {
                 Console.WriteLine(ex.Message);
             }
-
-
         }
     }
 }
