@@ -6,6 +6,14 @@
     xmlns:local="clr-namespace:TecnologicoApp.Views"
     Shell.FlyoutBehavior="Disabled">
 
+    <!--  Loading/Start Page  -->
+    <ShellItem Route="LoadingPage">
+        <ShellContent ContentTemplate="{DataTemplate local:LoadingPage}" />
+    </ShellItem>
+
+    <!--  Login and Registration Page  -->
+    <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
+
     <!--  Main Page  -->
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="Main">
         <ShellContent ContentTemplate="{DataTemplate local:WelcomePage}" Route="WelcomePage" />

@@ -3,11 +3,12 @@
     x:Class="TecnologicoApp.Views.WelcomePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="WelcomePage">
-    <VerticalStackLayout>
+    Title="Tecnológico LCG">
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Start">
         <Label
+            Padding="0,10"
             HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
+            Text="Bienvenidos a la APP del Tecnológico!"
             VerticalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>
