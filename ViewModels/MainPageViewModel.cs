@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using TecnologicoApp.Models;
 using TecnologicoApp.Views;
+using TecnologicoApp.ViewModels;
 
 namespace TecnologicoApp.ViewModels
 {
