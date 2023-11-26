@@ -54,9 +54,10 @@ namespace TecnologicoApp.ViewModels
                 await Util.ShowToastAsync($"El correo {Usuario.Email} no existe");
                 return;
             }
-            if (loginDataEmail.Value == Usuario.Password) 
+            if (loginDataEmail.Value != Usuario.Password)
             {
                 await Util.ShowToastAsync($"Contraseña Incorrecta");
+                return;
             }
             Settings.IsAuthenticated = true;
             Settings.Email =Usuario.Email;
@@ -73,8 +74,8 @@ namespace TecnologicoApp.ViewModels
         {
             return new List<KeyValuePair<string, string>>()
             {
-                new("gustavo@istlc.com", "Mama123"),
-                 new("betsabe@mail.com", "Papa123")
+                new("saul@istlcg.com", "Mom1234."),
+                 new("gus@mail.com", "Guayaquil")
             };
             
         }
