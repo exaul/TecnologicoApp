@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TecnologicoApp.Views.SignupPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="RegistroPage">
+    <ScrollView>
+        <StackLayout VerticalOptions="Start">
+            <Label
+                Padding="35"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="REGISTRO"
+                TextColor="Black" />
+            <!--  formulario  -->
+            <StackLayout Padding="0,30,0,0">
+                <StackLayout Padding="20">
+                    <Label Text="Email" TextColor="Black" />
+                    <Entry
+                        x:Name="EmailEntry"
+                        HorizontalOptions="StartAndExpand"
+                        Keyboard="Email"
+                        Text="{Binding Usuario.Email}"
+                        TextColor="Black"
+                        WidthRequest="333" />
+
+                </StackLayout>
+                <StackLayout Padding="20">
+                    <Label Text="Repetir contraseña" TextColor="Black" />
+                    <Entry
+                        x:Name="PasswordEntry"
+                        HorizontalOptions="StartAndExpand"
+                        IsPassword="True"
+                        Text="{Binding Usuario.Password}"
+                        TextColor="Black"
+                        WidthRequest="333" />
+
+                </StackLayout>
+            </StackLayout>
+            <!--  boton  -->
+            <StackLayout Padding="100,10">
+                <Button
+                    x:Name="LoginBtn"
+                    Command="{Binding LoginCommand}"
+                    Text="Iniciar" />
+            </StackLayout>
+            <StackLayout>
+                <Label
+                    HorizontalOptions="Center"
+                    Text="registro"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RegisterComand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

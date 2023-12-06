@@ -14,6 +14,8 @@ namespace TecnologicoApp.ViewModels
 
         public Command LoginCommand { get; set; }
 
+        public Command RegisterComand {  get; set; }
+
         #endregion
 
         public LoginPageViewModel()
@@ -63,6 +65,10 @@ namespace TecnologicoApp.ViewModels
             Settings.Email =Usuario.Email;
 
             await Shell.Current.GoToAsync($"///{nameof(WelcomePage)}");
+        }
+        private async void GotoSignupPageAsync()
+        {
+            await Shell.Current.GoToAsync($"{nameof(SignupPage)}");
         }
 
         private bool IsAValidEmail(string email)
