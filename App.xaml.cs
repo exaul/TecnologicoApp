@@ -5,9 +5,7 @@
         public App()
         {
             InitializeComponent();
-
             MainPage = new AppShell();
-        //    MainPage = new Views.SignupPage();
             //MainPage = new Views.SignupPage();
         }
     }
