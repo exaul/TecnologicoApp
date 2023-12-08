@@ -3,7 +3,6 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using TecnologicoApp.Models;
 using TecnologicoApp.Views;
-
 namespace TecnologicoApp.ViewModels
 {
     public class LoginPageViewModel : INotifyPropertyChanged
@@ -14,19 +13,22 @@ namespace TecnologicoApp.ViewModels
 
         public Command LoginCommand { get; set; }
 
+        public Command RegisterCommand { get; set; }
+
         #endregion
 
         public LoginPageViewModel()
         {
             Usuario = new UsuarioRegistro();
             LoginCommand = new Command(LoginAsync);
+            RegisterCommand = new Command(GoToSignupPageAsync);
         }
 
         #region "Logic"
 
         private async void LoginAsync()
         {
-            if (string.IsNullOrEmpty(Usuario.Email) || !IsAValidEmail(Usuario.Email.ToLower()))
+            if (string.IsNullOrEmpty(Usuario.Email) || Util.IsAValidEmail(Usuario.Email.ToLower()))
             {
                 await Util.ShowToastAsync("Ingrese un Email Válido");
                 return;
@@ -37,50 +39,56 @@ namespace TecnologicoApp.ViewModels
                 await Util.ShowToastAsync("Ingrese una Contraseña Válida");
                 return;
             }
-            //if (Usuario.Email != "saul@istlcg.com" || Usuario.Password != "Mom1234")
-            //{
-            //    await Util.ShowToastAsync("Email o contraseña incorrectos");
-            //    return;
-            //}
+
             var loginData = GetLoginData();
+
             if (loginData != null && !loginData.Any())
             {
-                await Util.ShowToastAsync("Configure Usuarios");
+                await Util.ShowToastAsync("Configure usuarios");
                 return;
             }
+
             var loginDataEmail = loginData.FirstOrDefault(x => x.Key == Usuario.Email);
+
             if (loginDataEmail.Equals(default(KeyValuePair<string, string>)))
             {
                 await Util.ShowToastAsync($"El correo {Usuario.Email} no existe");
                 return;
             }
+
             if (loginDataEmail.Value != Usuario.Password)
             {
                 await Util.ShowToastAsync($"Contraseña Incorrecta");
                 return;
             }
+
+
             Settings.IsAuthenticated = true;
-            Settings.Email =Usuario.Email;
+            Settings.Email = Usuario.Email;
+            Settings.EmailRegistro = Usuario.Email;
+            Settings.PasswordRegistro = Usuario.Password;
 
             await Shell.Current.GoToAsync($"///{nameof(WelcomePage)}");
         }
 
-        private bool IsAValidEmail(string email)
+     
+
+        private async void GoToSignupPageAsync()
         {
-            return Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
-            }
+            await Shell.Current.GoToAsync(nameof(SignupPage));
+        }
 
         private List<KeyValuePair<string, string>> GetLoginData()
         {
-            return new List<KeyValuePair<string, string>>()
+            return new List<KeyValuePair<string, string>>
             {
-                new("saul@istlcg.com", "Mom1234."),
-                 new("gus@mail.com", "Guayaquil")
+                new("gustavo@istlc.com", "Mama1234"),
+                new("betsabe@mail.com", "Papa1234"),
+                new(Settings.EmailRegistro, Settings.PasswordRegistro)
             };
-            
         }
 
-            public void OnPropertyChanged([CallerMemberName] string name = "") =>
+        public void OnPropertyChanged([CallerMemberName] string name = "") =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
         #endregion

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TecnologicoApp.Models
+﻿namespace TecnologicoApp.Models
 {
     public static class Settings
     {
@@ -19,7 +13,18 @@ namespace TecnologicoApp.Models
             get => Preferences.Default.Get(nameof(Email), string.Empty);
             set => Preferences.Default.Set(nameof(Email), value);
         }
+        public static string EmailRegistro
+        {
+            get => Preferences.Default.Get(nameof(EmailRegistro), string.Empty);
+            set => Preferences.Default.Set(nameof(EmailRegistro), value);
+        }
 
-        //public static bool IsAuthenticated { get; set; }
+        public static string PasswordRegistro
+        {
+            get => Preferences.Default.Get(nameof(PasswordRegistro), string.Empty);
+            set => Preferences.Default.Set(nameof(PasswordRegistro), value);
+        }
     }
+    //public static bool IsAuthenticated { get; set; }
 }
+
