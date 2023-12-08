@@ -5,7 +5,6 @@
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(Views.SignupPage), typeof(Views.SignupPage));
         }
     }
     }

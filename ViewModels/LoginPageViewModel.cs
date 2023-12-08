@@ -13,8 +13,6 @@ namespace TecnologicoApp.ViewModels
 
         public Command LoginCommand { get; set; }
 
-        public Command RegisterCommand { get; set; }
-
         #endregion
 
         public LoginPageViewModel()
@@ -69,6 +67,10 @@ namespace TecnologicoApp.ViewModels
             Settings.PasswordRegistro = Usuario.Password;
 
             await Shell.Current.GoToAsync($"///{nameof(WelcomePage)}");
+        }
+        private async void GotoSignupPageAsync()
+        {
+            await Shell.Current.GoToAsync($"{nameof(SignupPage)}");
         }
 
      

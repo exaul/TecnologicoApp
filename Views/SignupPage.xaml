@@ -8,6 +8,7 @@
     <ContentPage.BindingContext>
         <local:SignupPageViewModel />
     </ContentPage.BindingContext>
+    Title="RegistroPage">
     <ScrollView>
         <StackLayout VerticalOptions="Start">
             <Label
@@ -17,8 +18,6 @@
                 Text="REGISTRO"
                 TextColor="Black" />
             <!--  formulario  -->
-            <StackLayout Padding="0,10,0,0">
-                <!--  email  -->
                 <StackLayout Padding="20">
                     <Label Text="Email" TextColor="Black" />
                     <Entry
@@ -28,10 +27,10 @@
                         Text="{Binding Usuario.Email}"
                         TextColor="Black"
                         WidthRequest="333" />
+
                 </StackLayout>
                 <!--  Contraseña  -->
                 <StackLayout Padding="20">
-                    <Label Text="Contraseña" TextColor="Black" />
                     <Entry
                         x:Name="PasswordEntry"
                         HorizontalOptions="StartAndExpand"
@@ -40,23 +39,8 @@
                         TextColor="Black"
                         WidthRequest="333" />
                 </StackLayout>
-                <StackLayout Padding="20">
-                    <Label Text="Repetir Contraseña" TextColor="Black" />
-                    <Entry
-                        x:Name="PasswordEntry2"
-                        HorizontalOptions="StartAndExpand"
-                        IsPassword="True"
-                        Text="{Binding Password2}"
-                        TextColor="Black"
-                        WidthRequest="333" />
-                </StackLayout>
             </StackLayout>
-            <!--  Boton  -->
-            <StackLayout Padding="50,10">
                 <Button
-                    x:Name="SaveBtn"
-                    Command="{Binding SaveCommand}"
-                    Text="Guardar" />
             </StackLayout>
         </StackLayout>
     </ScrollView>
