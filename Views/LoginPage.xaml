@@ -5,9 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TecnologicoApp.ViewModels"
     Title="Tecnologico App">
-    <ContentPage.BindingContext>
-        <local:LoginPageViewModel />
-    </ContentPage.BindingContext>
     <ScrollView>
         <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
             <Image

@@ -1,12 +1,15 @@
-﻿namespace TecnologicoApp.Views
+﻿using TecnologicoApp.ViewModels;
+
+namespace TecnologicoApp.Views
 {
     public partial class LoginPage : ContentPage
     {
-        public LoginPage()
+        public LoginPage(LoginPageViewModel loginPageViewModel)
         {
             try
             {
                 InitializeComponent();
+                BindingContext = loginPageViewModel;
             }
             catch (XamlParseException ex)
             {

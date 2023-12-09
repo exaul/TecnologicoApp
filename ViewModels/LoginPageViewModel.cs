@@ -2,12 +2,16 @@
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using TecnologicoApp.Models;
+using TecnologicoApp.Service.Interface;
 using TecnologicoApp.Views;
 namespace TecnologicoApp.ViewModels
 {
     public class LoginPageViewModel : INotifyPropertyChanged
     {
+        private readonly ISignupSigninService signupSigninService;
+
         #region "Properties"
+
 
         public UsuarioRegistro Usuario { get; set; }
 
@@ -17,14 +21,29 @@ namespace TecnologicoApp.ViewModels
 
         #endregion
 
-        public LoginPageViewModel()
+        public LoginPageViewModel(ISignupSigninService signupSigninService)
         {
             Usuario = new UsuarioRegistro();
             LoginCommand = new Command(LoginAsync);
-            RegisterCommand = new Command(GoToSignupPageAsync);
+            RegisterCommand = new Command(SignUpAsync);            
+            //RegisterCommand = new Command(GoToSignupPageAsync);
+            this.signupSigninService = signupSigninService;
         }
 
         #region "Logic"
+
+        private async void SignUpAsync() 
+        {
+            var result = await signupSigninService.SignUpAsync(Usuario);
+            
+            if (!result)
+            {
+                await Util.ShowToastAsync("No se registro el usuario");
+                return;
+            }
+
+            await Util.ShowToastAsync($"Usuario {Usuario.Email} registro exitosamente");
+        }
 
         private async void LoginAsync()
         {
