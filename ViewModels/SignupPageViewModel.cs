@@ -1,49 +1,37 @@
 ﻿using System.ComponentModel;
 using TecnologicoApp.Models;
+using TecnologicoApp.Service.Interface;
 
 namespace TecnologicoApp.ViewModels;
 
 public class SignupPageViewModel : INotifyPropertyChanged
 
 {
+    private readonly ISignupSigninService signupSigninService;
     public UsuarioRegistro Usuario { get; set; }
 
     public string Password2 { get; set; }
 
     public Command SaveCommand { get; set; }
-
-    public SignupPageViewModel()
+    public SignupPageViewModel(ISignupSigninService signupSigninService)
     {
         Usuario = new UsuarioRegistro();
-        SaveCommand = new Command(SaveAsync);
+        SaveCommand = new Command(SignUpAsync);
+        //RegisterCommand = new Command(GoToSignupPageAsync);
+        this.signupSigninService = signupSigninService;
     }
 
-    private async void SaveAsync()
+    private async void SignUpAsync()
     {
-        if (string.IsNullOrEmpty(Usuario.Email) || Util.IsAValidEmail(Usuario.Email.ToLower()))
+        var result = await signupSigninService.SignUpAsync(Usuario);
+
+        if (!result)
         {
-            await Util.ShowToastAsync("Ingrese un Email Válido");
+            await Util.ShowToastAsync("No se registro el usuario");
             return;
         }
 
-        if (string.IsNullOrEmpty(Usuario.Password))
-        {
-            await Util.ShowToastAsync("Ingrese una Contraseña Válida");
-            return;
-        }
-        if (string.IsNullOrEmpty(Password2))
-        {
-            await Util.ShowToastAsync("No se Aceptan Caracteres Nulos");
-            return;
-        }
-        if (Usuario.Password != Password2)
-        {
-            await Util.ShowToastAsync("La Contraseña no coinciden");
-            return;
-        }
-        Settings.EmailRegistro = Usuario.Email;
-        Settings.PasswordRegistro = Usuario.Password;
-
+        await Util.ShowToastAsync($"Usuario {Usuario.Email} registro exitosamente");
         await Shell.Current.Navigation.PopAsync();
     }
 

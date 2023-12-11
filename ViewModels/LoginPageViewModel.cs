@@ -8,8 +8,6 @@ namespace TecnologicoApp.ViewModels
 {
     public class LoginPageViewModel : INotifyPropertyChanged
     {
-        private readonly ISignupSigninService signupSigninService;
-
         #region "Properties"
 
 
@@ -25,25 +23,12 @@ namespace TecnologicoApp.ViewModels
         {
             Usuario = new UsuarioRegistro();
             LoginCommand = new Command(LoginAsync);
-            RegisterCommand = new Command(SignUpAsync);            
+            RegisterCommand = new Command(GoToSignupPageAsync);            
             //RegisterCommand = new Command(GoToSignupPageAsync);
-            this.signupSigninService = signupSigninService;
+            //this.signupSigninService = signupSigninService;
         }
 
         #region "Logic"
-
-        private async void SignUpAsync() 
-        {
-            var result = await signupSigninService.SignUpAsync(Usuario);
-            
-            if (!result)
-            {
-                await Util.ShowToastAsync("No se registro el usuario");
-                return;
-            }
-
-            await Util.ShowToastAsync($"Usuario {Usuario.Email} registro exitosamente");
-        }
 
         private async void LoginAsync()
         {

@@ -24,6 +24,8 @@ namespace TecnologicoApp
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton<SignupPage>();
+            builder.Services.AddSingleton<SignupPageViewModel>();
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<LoginPageViewModel>();
             builder.Services.AddSingleton<ISignupSigninService, SignupSigninService>();
